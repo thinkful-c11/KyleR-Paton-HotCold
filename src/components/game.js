@@ -42,7 +42,7 @@ export default class Game extends React.Component {
             }); return;
         }
 
-        if(Math.abs(computer-value) < 5) {
+        if(Math.abs(computer-value) <= 5) {
             this.setState({
                 feedback: 'Hot!'
             }); return;
