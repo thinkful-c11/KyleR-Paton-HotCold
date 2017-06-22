@@ -5,7 +5,7 @@ import GuessSection from './guess-section';
 import GuessCount  from './guess-count';
 import GuessList from './guess-list';
 
-export default function Game(props) {
+export default function Game(props) { 
     return (
         <div>
             <Header />
