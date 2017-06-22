@@ -11,21 +11,20 @@ export default class Game extends React.Component {
         this.state={
             computerNumber: 50,
             guesses: [],
-            feedback: 'Make your guess!'
+            feedback: 'Make your guess!',
+            currentGuess: null
         };
     }
     
-    guess(value) {
-        console.log(this);
-        const computer = this.computer;
-        console.log("working?")
-        value = Number(value);
+    guess() {
+        const computer = this.state.computerNumber;
+        const value = Number(this.state.currentGuess);
         if(isNaN(value)) {
             alert('Please only guess numbers.');
             return false;
         }
 
-        if (this.guesses.includes(value)) {
+        if (this.state.guesses.includes(value)) {
             alert('Please guess unique numbers.');
             return false;
         }
@@ -34,6 +33,8 @@ export default class Game extends React.Component {
             alert('Please guess numbers between 1-100.');
             return false;
         }
+        
+        this.setState({guesses: [...this.state.guesses, value]})
 
         if(value === computer) {
             this.setState({
@@ -62,10 +63,8 @@ export default class Game extends React.Component {
         <div>
             <Header />
             <GuessSection feedback={this.state.feedback} 
-                          addGuess={value => this.setState({guesses: [...this.state.guesses, value]})}
-                          guesses={this.state.guesses}
-                          guess={this.guess}
-                          computer={this.state.computerNumber}
+                          guess={() => this.guess()}
+                          setCurrentGuess={value => this.setState({currentGuess: value})}
             />
             <GuessCount count={this.state.guesses.length} />
             <GuessList guesses={this.state.guesses} />
