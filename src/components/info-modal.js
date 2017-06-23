@@ -4,7 +4,7 @@ import './info-modal.css';
 
 export default function InfoModal(props) {
     return (
-        <div className={props.show ? 'overlay': 'overlay hidden'} id="modal">
+        <div className="overlay" id="modal">
             <div className="content">
                 <h3>What do I do?</h3>
                 <div>

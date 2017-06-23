@@ -14,18 +14,22 @@ export default class Header extends React.Component {
     }
 
     render() {
+        let modal;
+        if (this.state.showing) {
+            modal = <InfoModal 
+                        hideModal={() => this.setState({showing: false})}
+                    />;
+        }
+        
         return (
             <header>
                 <TopNav 
-                    newGame={this.props.newGame}
-                    showModal={() => this.setState({showing: true})}
-                />
-                <InfoModal 
-                    show={this.state.showing}
-                    hideModal={() => this.setState({showing: false})}
-                />
+                        newGame={this.props.newGame}
+                        showModal={() => this.setState({showing: true})}
+                    />
+                {modal}
                 <h1>HOT or COLD</h1>
             </header>
         );
     }
-};
+}
